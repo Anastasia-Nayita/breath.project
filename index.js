@@ -176,13 +176,23 @@ app.post("/uploader", uploader.single("file"), s3.upload, async function (
     }
 
     try {
-        const { rows } = await db.addProfilePic(imageUrl, req.session.userId);
+        const { rows } = await db.addProfilePic(req.session.userId);
         res.json(rows[0]);
     } catch (err) {
         console.log("err in addProfilePic: ", err);
     }
 });
 
+app.post("/physical", async function (req, res) {
+    //console.log("req.session in app.get.user : ", req.session);
+    try {
+        const { rows } = await db.addPhysChoice(req.session.userId, choice);
+        //console.log("rows[0] in /user/", rows[0]);
+        res.json(rows[0]);
+    } catch (err) {
+        console.log("err in getUserDataById: ", err);
+    }
+});
 /////////////////////////////////////////////////
 
 app.get("*", function (req, res) {
@@ -206,4 +216,20 @@ io.on("connection", (socket) => {
     socket.on("disconnect", () => {
         console.log("socket with id disconnected: ", socket.id);
     });
+
+    // socket.on("choice", async (newChoice) => {
+    //     console.log(" newChoice: ", newChoice);
+    //     const { rows } = await db.addPhysChoice(
+    //         socket.request.session.userId,
+    //         newChoice
+    //     );
+
+    //     const newPhysChoice = { ...rows[0] };
+    //     console.log("newPhysChoice", newPhysChoice);
+
+    // io.to(socket.request.session.userId).emit(
+    //     "newPhysChoice",
+    //     newPhysChoice
+    // );
+    //});
 });

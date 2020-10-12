@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS users;
-
+DROP TABLE IF EXISTS checkup;
 
 CREATE TABLE users (
      id SERIAL PRIMARY KEY,
@@ -13,7 +13,10 @@ CREATE TABLE users (
 
 CREATE TABLE checkup (
      id SERIAL PRIMARY KEY,
-     physically VARCHAR NOT NULL,
-     mentally VARCHAR NOT NULL,
-     emotionally VARCHAR NOT NULL,
+     userId INT REFERENCES users(id) NOT NULL,
+     physically VARCHAR ,
+     mentally VARCHAR ,
+     emotionally VARCHAR ,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
  );

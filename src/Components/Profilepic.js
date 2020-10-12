@@ -5,7 +5,7 @@ export default function ({ first, last, imageUrl, clickHandler }) {
     return (
         <div className="profilepic">
             <Avatar
-                alt={{ first } & { last }}
+                // alt={{ first } & { last }}
                 src={imageUrl}
                 onClick={clickHandler}
             />

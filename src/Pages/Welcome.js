@@ -14,7 +14,7 @@ export default function Welcome() {
         <div id="welcome">
             <h1>Welcome mate!</h1>
             <ThemeProvider theme={theme}>
-                {/* <App /> */}
+                <App />
                 <HashRouter>
                     <div>
                         <Route exact path="/" component={Registration} />

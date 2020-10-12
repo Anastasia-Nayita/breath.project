@@ -6,6 +6,8 @@ import Navbar from "../Components/Navbar.js";
 import Profilepic from "../Components/Profilepic.js";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Checkup from "../Components/Checkup";
+import { ThemeProvider } from "@material-ui/core/styles";
+import theme from "../theme";
 
 ///////////////////////////
 
@@ -40,52 +42,54 @@ export default class App extends React.Component {
     render() {
         return (
             <div>
-                <Router>
-                    <Navbar
-                        profilepic={
-                            <Profilepic imageUrl={this.state.image_url} />
-                        }
-                    />
-                    <Route exact path="/" render={() => <Checkup />} />
-                    <Route
-                        exact
-                        path="/profile"
-                        render={() => (
-                            <Profile
-                                first={this.state.first}
-                                last={this.state.last}
-                                profilepic={
-                                    <Profilepic
-                                        id={this.state.id}
-                                        first={this.state.first}
-                                        last={this.state.last}
-                                        imageUrl={this.state.image_url}
-                                        clickHandler={() =>
-                                            this.setState({
-                                                uploaderIsVisible: true,
-                                            })
-                                        }
-                                    />
-                                }
-                            />
-                        )}
-                    />
-                </Router>
-                <div className="Logo">
-                    <h1> here is a logo </h1>
-                </div>
+                <ThemeProvider theme={theme}>
+                    <Router>
+                        <Navbar
+                            profilepic={
+                                <Profilepic imageUrl={this.state.image_url} />
+                            }
+                        />
+                        <Route exact path="/" render={() => <Checkup />} />
+                        <Route
+                            exact
+                            path="/profile"
+                            render={() => (
+                                <Profile
+                                    first={this.state.first}
+                                    last={this.state.last}
+                                    profilepic={
+                                        <Profilepic
+                                            id={this.state.id}
+                                            first={this.state.first}
+                                            last={this.state.last}
+                                            imageUrl={this.state.image_url}
+                                            clickHandler={() =>
+                                                this.setState({
+                                                    uploaderIsVisible: true,
+                                                })
+                                            }
+                                        />
+                                    }
+                                />
+                            )}
+                        />
+                    </Router>
+                    <div className="Logo">
+                        <h1> logo </h1>
+                    </div>
 
-                {this.state.uploaderIsVisible && (
-                    <Uploader
-                        addImage={(newImage) => {
-                            console.log("newImage: ", newImage);
-                            this.setState({
-                                image_url: newImage,
-                                uploaderIsVisible: false,
-                            });
-                        }}
-                    />
-                )}
+                    {this.state.uploaderIsVisible && (
+                        <Uploader
+                            addImage={(newImage) => {
+                                console.log("newImage: ", newImage);
+                                this.setState({
+                                    image_url: newImage,
+                                    uploaderIsVisible: false,
+                                });
+                            }}
+                        />
+                    )}
+                </ThemeProvider>
             </div>
         );
     }

@@ -1,7 +1,7 @@
 const spicedPg = require("spiced-pg");
 const db = spicedPg(
     process.env.DATABASE_URL ||
-        "postgres:postgres:postgres@localhost:5432/network"
+        "postgres:postgres:postgres@localhost:5432/final"
 );
 
 module.exports.addUserData = (first, last, email, password) => {
@@ -37,5 +37,16 @@ module.exports.addProfilePic = (image_url, id) => {
         WHERE id = ($2)
         RETURNING *`,
         [image_url, id]
+    );
+};
+
+module.exports.addPhysChoice = (userId, physically) => {
+    console.log("staff from db: ", userId, physically);
+    return db.query(
+        `INSERT INTO checkup
+        (userId, physically)
+       VALUES ($1, $2)
+       RETURNING *`,
+        [userId, physically]
     );
 };

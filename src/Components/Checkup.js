@@ -1,19 +1,19 @@
-import React, { useEffect } from "react";
-import { socket } from "../socket";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
+import axios from "../axios";
+import Card from "@material-ui/core/Card";
 
-export default function Chat() {
-    const chatMsgs = useSelector((state) => state && state.msgs);
-    //console.log("here are my last 10 messages: ", chatMsgs);
-
-    const click = (e) => {
-        // console.log("value of button", e.target.value);
-        // console.log("key pressed", e.key);
+export default function Checkup() {
+    const handleClick = async (e) => {
         e.preventDefault();
         console.log("choice: ", e.currentTarget.value);
-        // socket.emit("choice", e.target.value);
-        e.target.value = "";
+        let choice = e.currentTarget.value;
+        try {
+            const { data } = await axios.post("/physical");
+            console.log("data in try - axios", data);
+        } catch (err) {
+            console.log("err: ", err);
+        }
     };
 
     return (
@@ -21,19 +21,47 @@ export default function Chat() {
             <div className="checkup-block">
                 <div className="physically">
                     <h1>Physically</h1>
-                    <Button variant="contained" color="primary" onClick={click}>
+
+                    <Button
+                        variant="contained"
+                        style={{ margin: "10% 0" }}
+                        color="primary"
+                        value="great"
+                        onClick={(e) => handleClick(e)}
+                    >
                         great
                     </Button>
-                    <Button variant="contained" color="primary" onClick={click}>
+                    <Button
+                        style={{ margin: "10% 0" }}
+                        variant="contained"
+                        color="primary"
+
+                        // onClick={clickGood}
+                    >
                         good
                     </Button>
-                    <Button variant="contained" color="primary" onClick={click}>
+                    <Button
+                        style={{ margin: "10% 0" }}
+                        variant="contained"
+                        color="primary"
+                        // onClick={clickMeh}
+                    >
                         meh
                     </Button>
-                    <Button variant="contained" color="primary" onClick={click}>
+                    <Button
+                        style={{ margin: "10% 0" }}
+                        variant="contained"
+                        color="primary"
+                        // onClick={clickPoor}
+                    >
                         poor
                     </Button>
-                    <Button variant="contained" color="primary" onClick={click}>
+                    <Button
+                        style={{ margin: "10% 0" }}
+                        variant="contained"
+                        color="primary"
+                        // onClick={clickRough}
+                    >
                         rough
                     </Button>
                 </div>
