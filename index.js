@@ -185,8 +185,12 @@ app.post("/uploader", uploader.single("file"), s3.upload, async function (
 
 app.post("/physical", async function (req, res) {
     //console.log("req.session in app.get.user : ", req.session);
+    console.log("req.body", req.body);
     try {
-        const { rows } = await db.addPhysChoice(req.session.userId, choice);
+        const { rows } = await db.addPhysChoice(
+            req.session.userId,
+            req.body.choice
+        );
         //console.log("rows[0] in /user/", rows[0]);
         res.json(rows[0]);
     } catch (err) {

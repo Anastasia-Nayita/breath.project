@@ -74,9 +74,7 @@ export default class App extends React.Component {
                             )}
                         />
                     </Router>
-                    <div className="Logo">
-                        <h1> logo </h1>
-                    </div>
+                    <div className="Logo"></div>
 
                     {this.state.uploaderIsVisible && (
                         <Uploader
