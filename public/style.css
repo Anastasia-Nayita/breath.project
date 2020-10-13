@@ -10,12 +10,6 @@
     margin: 5% 5%;
 }
 
-.emotionaly,
-.mentally,
-.physically {
-    text-align: center;
-    margin: 10% 0;
-}
 .checkup-btns-em {
     display: flex;
 

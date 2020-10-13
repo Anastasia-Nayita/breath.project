@@ -5,6 +5,9 @@ import Card from "@material-ui/core/Card";
 import Avatar from "@material-ui/core/Avatar";
 import { makeStyles } from "@material-ui/core/styles";
 import { animateScroll as scroll } from "react-scroll";
+import Modal from "@material-ui/core/Modal";
+import Backdrop from "@material-ui/core/Backdrop";
+import Fade from "@material-ui/core/Fade";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,13 +21,24 @@ const useStyles = makeStyles((theme) => ({
         textAlign: "center",
         margin: "10%",
     },
+    modal: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    paper: {
+        backgroundColor: theme.palette.background.paper,
+        border: "2px solid #000",
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing(2, 4, 3),
+    },
     large: {
         textAlign: "center",
         width: theme.spacing(10),
         height: theme.spacing(10),
         margin: theme.spacing(3),
         padding: theme.spacing(2),
-        border: "solid grey",
+        border: "solid grey 0.5px",
     },
 }));
 
@@ -33,6 +47,16 @@ export default function Checkup() {
     const classes = useStyles();
     const [clicked, setClicked] = useState(false);
     const [image, setImage] = useState("");
+
+    const [open, setOpen] = useState(false);
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const handleClickPh = async (e) => {
         e.preventDefault();
@@ -60,9 +84,7 @@ export default function Checkup() {
         } else if (choice === "meh") {
             setImage("../images/Physically_Meh.png");
         }
-        //const cardRef = useRef();
 
-        //scroll.scrollTo(cardRef.current.clientHeight + 100);
         scroll.scrollTo(725);
     };
 
@@ -103,49 +125,6 @@ export default function Checkup() {
         e.preventDefault();
         console.log("clicked on emotion");
     };
-
-    ////////////////////////////////////////////////////////////////////
-
-    // const [noDisplay, setNoDisplay] = useState(false);
-    // useEffect(() => {
-    //     if (clicked) setTimeout(() => setNoDisplay(true), 350);
-    //     else setNoDisplay(false);
-    // }, [clicked]);
-    // const style = noDisplay ? { display: "none" } : null;
-
-    ////////////////////////////////////////////////////////////////////
-
-    // useEffect(() => {
-    //     // console.log("useEffect hook component mounted");
-    //     // elemRef.current.scrollTop = cardRef.current.scrollHeight;
-
-    //
-    //     console.log("clicked", clicked);
-    //     // console.log("scrollTop: ", elemRef.current.scrollTop);
-
-    //     if (clicked) {
-    //         // setTimeout(
-    //         //     () =>
-    //         //         (elemRef.current.scrollTop = elemRef.current.scrollHeight),
-    //         //     300
-    //         // );
-    //         // console.log(
-    //         //     "cardRef.current.scrollHeight: ",
-    //         //     cardRef.current.scrollHeight
-    //         // );
-    //         // console.log(
-    //         //     "cardRef.current.clientHeight: ",
-    //         //     cardRef.current.clientHeight
-    //         // );
-
-    //         console.log("useEffect scroll inside IF");
-
-    //         window.scrollTo(0, cardRef.current.clientHeight);
-    //         // elemRef.current.scrollTop = "200px";
-    //     }
-
-    //     //  elemRef.current.scrollHeight - elemRef.current.clientHeight;
-    // }, [clicked]);
 
     return (
         <div>
@@ -271,7 +250,35 @@ export default function Checkup() {
                             variant="square"
                             src="../images/Emotionaly_Great.png"
                             className={classes.large}
+                            onClick={handleOpen}
                         />
+                        <Modal
+                            aria-labelledby="transition-modal-title"
+                            aria-describedby="transition-modal-description"
+                            className={classes.modal}
+                            open={open}
+                            onClose={handleClose}
+                            closeAfterTransition
+                            BackdropComponent={Backdrop}
+                            BackdropProps={{
+                                timeout: 500,
+                            }}
+                        >
+                            <Fade in={open}>
+                                <div className={classes.paper}>
+                                    <h2 id="transition-modal-title">
+                                        Choose 5 descriptive emotions
+                                    </h2>
+                                    <h4 id="transition-modal-description">
+                                        <ul>
+                                            <li>Happy</li>
+                                            <li>Gratefull</li>
+                                        </ul>
+                                    </h4>
+                                </div>
+                            </Fade>
+                        </Modal>
+
                         <Avatar
                             variant="square"
                             src="../images/Emotionaly_Good.png"
