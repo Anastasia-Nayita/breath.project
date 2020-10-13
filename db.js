@@ -50,3 +50,14 @@ module.exports.addPhysChoice = (userId, physically) => {
         [userId, physically]
     );
 };
+
+module.exports.addMentChoice = (userId, mentally) => {
+    console.log("staff from db: ", userId, mentally);
+    return db.query(
+        `INSERT INTO checkup
+        (userId, mentally)
+       VALUES ($1, $2)
+       RETURNING *`,
+        [userId, mentally]
+    );
+};

@@ -10,5 +10,12 @@ const theme = createMuiTheme({
             main: "#005249",
         },
     },
+    // overrides: {
+    //     MuiCard: {
+    //         root: {
+    //             variant: "outlined",
+    //         },
+    //     },
+    // },
 });
 export default theme;

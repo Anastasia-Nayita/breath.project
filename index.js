@@ -194,9 +194,25 @@ app.post("/physical", async function (req, res) {
         //console.log("rows[0] in /user/", rows[0]);
         res.json(rows[0]);
     } catch (err) {
-        console.log("err in getUserDataById: ", err);
+        console.log("err in /physical: ", err);
     }
 });
+
+app.post("/mentall", async function (req, res) {
+    //console.log("req.session in app.get.user : ", req.session);
+    console.log("req.body", req.body);
+    try {
+        const { rows } = await db.addMentChoice(
+            req.session.userId,
+            req.body.choice
+        );
+        //console.log("rows[0] in /user/", rows[0]);
+        res.json(rows[0]);
+    } catch (err) {
+        console.log("err in /mentall: ", err);
+    }
+});
+
 /////////////////////////////////////////////////
 
 app.get("*", function (req, res) {

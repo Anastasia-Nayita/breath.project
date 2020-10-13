@@ -1,11 +1,30 @@
 .checkup-btns {
     display: inline-grid;
-    margin: 5% 10%;
+    margin: 5% 5%;
     position: absolute;
     left: 35%;
 }
 .phy-img {
     max-width: 250px;
     float: right;
-    margin: 5% 10%;
+    margin: 5% 5%;
+}
+
+.emotionaly,
+.mentally,
+.physically {
+    text-align: center;
+    margin: 10% 0;
+}
+.checkup-btns-em {
+    display: flex;
+
+    margin: 10%;
+}
+
+.av-em {
+    margin: 5%;
+}
+* {
+    /* scroll-behavior: smooth; */
 }
