@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import axios from "../axios";
 import Card from "@material-ui/core/Card";
@@ -56,15 +56,47 @@ export default function Checkup() {
     const classes = useStyles();
     const [clicked, setClicked] = useState(false);
     const [image, setImage] = useState("");
+    ///////////// Modal
+    const [openGreat, setOpenGreat] = useState(false);
+    const [openGood, setOpenGood] = useState(false);
+    const [openMeh, setOpenMeh] = useState(false);
+    const [openPoor, setOpenPoor] = useState(false);
+    const [openRough, setOpenRough] = useState(false);
 
-    const [open, setOpen] = useState(false);
-
-    const handleOpen = () => {
-        setOpen(true);
+    const handleOpen = (e) => {
+        console.log("e.currentTarget.id: ", e.currentTarget.id);
+        if (e.currentTarget.id == "Great") {
+            setOpenGreat(true);
+        } else if (e.currentTarget.id == "Good") {
+            setOpenGood(true);
+        } else if (e.currentTarget.id == "Meh") {
+            setOpenMeh(true);
+        } else if (e.currentTarget.id == "Poor") {
+            setOpenPoor(true);
+        } else if (e.currentTarget.id == "Rough") {
+            setOpenRough(true);
+        }
     };
 
     const handleClose = () => {
-        setOpen(false);
+        // console.log("e.currentTarget.id: ", e.currentTarget.id);
+        // if (e.currentTarget.id == "Great") {
+        //     setOpenGreat(false);
+        // } else if (e.currentTarget.id == "Good") {
+        //     setOpenGood(false);
+        // } else if (e.currentTarget.id == "Meh") {
+        //     setOpenMeh(false);
+        // } else if (e.currentTarget.id == "Poor") {
+        //     setOpenPoor(false);
+        // } else if (e.currentTarget.id == "Rough") {
+        //     setOpenRough(false);
+        // }
+
+        setOpenGreat(false);
+        setOpenGood(false);
+        setOpenMeh(false);
+        setOpenPoor(false);
+        setOpenRough(false);
     };
 
     const handleClickPh = async (e) => {
@@ -128,11 +160,6 @@ export default function Checkup() {
         }
 
         scroll.scrollTo(1500);
-    };
-
-    const handleClickEm = async (e) => {
-        e.preventDefault();
-        console.log("clicked on emotion");
     };
 
     return (
@@ -256,6 +283,7 @@ export default function Checkup() {
                     <h1>Emotionally</h1>
                     <div className="checkup-btns-em">
                         <Avatar
+                            id="Great"
                             variant="square"
                             src="../images/Emotionaly_Great.png"
                             className={classes.large}
@@ -265,7 +293,7 @@ export default function Checkup() {
                             aria-labelledby="transition-modal-title"
                             aria-describedby="transition-modal-description"
                             className={classes.modal}
-                            open={open}
+                            open={openGreat}
                             onClose={handleClose}
                             closeAfterTransition
                             BackdropComponent={Backdrop}
@@ -273,13 +301,13 @@ export default function Checkup() {
                                 timeout: 500,
                             }}
                         >
-                            <Fade in={open}>
+                            <Fade in={openGreat}>
                                 <div className={classes.paper}>
                                     <h2 id="transition-modal-title">
                                         Choose 5 descriptive emotions
                                     </h2>
                                     <h4 id="transition-modal-description">
-                                        <List>
+                                        {/* <List>
                                             <ListItem button>
                                                 <ListItemText primary="Chelsea Otakan" />
                                             </ListItem>
@@ -289,7 +317,7 @@ export default function Checkup() {
                                                     primary="Eric Hoffman"
                                                 />
                                             </ListItem>
-                                        </List>
+                                        </List> */}
                                         <ul className={classes.emolist}>
                                             <li>Confident</li>
                                             <li>Gratefull</li>
@@ -308,6 +336,7 @@ export default function Checkup() {
                         </Modal>
 
                         <Avatar
+                            id="Good"
                             variant="square"
                             src="../images/Emotionaly_Good.png"
                             className={classes.large}
@@ -317,15 +346,15 @@ export default function Checkup() {
                             aria-labelledby="transition-modal-title"
                             aria-describedby="transition-modal-description"
                             className={classes.modal}
-                        open={open}
-                            onClose={this.handleClose}
+                            open={openGood}
+                            onClose={handleClose}
                             closeAfterTransition
                             BackdropComponent={Backdrop}
                             BackdropProps={{
                                 timeout: 500,
                             }}
                         >
-                            <Fade in={open}>
+                            <Fade in={openGood}>
                                 <div className={classes.paper}>
                                     <h2 id="transition-modal-title">
                                         Choose 5 descriptive emotions
@@ -348,6 +377,7 @@ export default function Checkup() {
                             </Fade>
                         </Modal>
                         <Avatar
+                            id="Meh"
                             variant="square"
                             src="../images/Emotionaly_Meh.png"
                             className={classes.large}
@@ -357,7 +387,7 @@ export default function Checkup() {
                             aria-labelledby="transition-modal-title"
                             aria-describedby="transition-modal-description"
                             className={classes.modal}
-                            open={open}
+                            open={openMeh}
                             onClose={handleClose}
                             closeAfterTransition
                             BackdropComponent={Backdrop}
@@ -365,7 +395,7 @@ export default function Checkup() {
                                 timeout: 500,
                             }}
                         >
-                            <Fade in={open}>
+                            <Fade in={openMeh}>
                                 <div className={classes.paper}>
                                     <h2 id="transition-modal-title">
                                         Choose 5 descriptive emotions
@@ -388,24 +418,25 @@ export default function Checkup() {
                             </Fade>
                         </Modal>
                         <Avatar
+                            id="Poor"
                             variant="square"
                             src="../images/Emotionaly_Poor.png"
                             className={classes.large}
-                            onClick={handleOpen}
+                            onClick={(e) => handleOpen(e)}
                         />
                         <Modal
                             aria-labelledby="transition-modal-title"
                             aria-describedby="transition-modal-description"
                             className={classes.modal}
-                            open={open}
-                            onClose={handleClose}
+                            open={openPoor}
+                            onClose={(e) => handleClose(e)}
                             closeAfterTransition
                             BackdropComponent={Backdrop}
                             BackdropProps={{
                                 timeout: 500,
                             }}
                         >
-                            <Fade in={open}>
+                            <Fade in={openPoor}>
                                 <div className={classes.paper}>
                                     <h2 id="transition-modal-title">
                                         Choose 5 descriptive emotions
@@ -428,17 +459,18 @@ export default function Checkup() {
                             </Fade>
                         </Modal>
                         <Avatar
+                            id="Rough"
                             variant="square"
                             src="../images/Emotionaly_Rough.png"
                             className={classes.large}
-                            onClick={(e) => handleClickEm(e)}
+                            //onClick={(e) => handleClickEm(e)}
                             onClick={handleOpen}
                         />
                         <Modal
                             aria-labelledby="transition-modal-title"
                             aria-describedby="transition-modal-description"
                             className={classes.modal}
-                            open={open}
+                            open={openRough}
                             onClose={handleClose}
                             closeAfterTransition
                             BackdropComponent={Backdrop}
@@ -446,7 +478,7 @@ export default function Checkup() {
                                 timeout: 500,
                             }}
                         >
-                            <Fade in={open}>
+                            <Fade in={openRough}>
                                 <div className={classes.paper}>
                                     <h2 id="transition-modal-title">
                                         Choose 5 descriptive emotions
