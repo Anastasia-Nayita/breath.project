@@ -22,3 +22,9 @@
 * {
     /* scroll-behavior: smooth; */
 }
+li {
+    padding: 5% 0;
+}
+li:hover {
+    background-color: plum;
+}

@@ -8,6 +8,9 @@ import { animateScroll as scroll } from "react-scroll";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -31,6 +34,12 @@ const useStyles = makeStyles((theme) => ({
         border: "2px solid #000",
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
+    },
+    emolist: {
+        listStyle: "none",
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        textAlign: "center",
     },
     large: {
         textAlign: "center",
@@ -270,9 +279,28 @@ export default function Checkup() {
                                         Choose 5 descriptive emotions
                                     </h2>
                                     <h4 id="transition-modal-description">
-                                        <ul>
-                                            <li>Happy</li>
+                                        <List>
+                                            <ListItem button>
+                                                <ListItemText primary="Chelsea Otakan" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText
+                                                    inset
+                                                    primary="Eric Hoffman"
+                                                />
+                                            </ListItem>
+                                        </List>
+                                        <ul className={classes.emolist}>
+                                            <li>Confident</li>
                                             <li>Gratefull</li>
+                                            <li>Delighted</li>
+                                            <li>Optimistic</li>
+                                            <li>Enthusiastic</li>
+                                            <li>Content</li>
+                                            <li>Joyful</li>
+                                            <li>Loving</li>
+                                            <li>Glad</li>
+                                            <li>Amused</li>
                                         </ul>
                                     </h4>
                                 </div>
@@ -283,23 +311,163 @@ export default function Checkup() {
                             variant="square"
                             src="../images/Emotionaly_Good.png"
                             className={classes.large}
+                            onClick={handleOpen}
                         />
+                        <Modal
+                            aria-labelledby="transition-modal-title"
+                            aria-describedby="transition-modal-description"
+                            className={classes.modal}
+                        open={open}
+                            onClose={this.handleClose}
+                            closeAfterTransition
+                            BackdropComponent={Backdrop}
+                            BackdropProps={{
+                                timeout: 500,
+                            }}
+                        >
+                            <Fade in={open}>
+                                <div className={classes.paper}>
+                                    <h2 id="transition-modal-title">
+                                        Choose 5 descriptive emotions
+                                    </h2>
+                                    <h4 id="transition-modal-description">
+                                        <ul className={classes.emolist}>
+                                            <li>Accepted</li>
+                                            <li>Balanced</li>
+                                            <li>Rested</li>
+                                            <li>Calm</li>
+                                            <li>Peaceful</li>
+                                            <li>Patient</li>
+                                            <li>Grounded</li>
+                                            <li>Neutral</li>
+                                            <li>Focused</li>
+                                            <li>Caring</li>
+                                        </ul>
+                                    </h4>
+                                </div>
+                            </Fade>
+                        </Modal>
                         <Avatar
                             variant="square"
                             src="../images/Emotionaly_Meh.png"
                             className={classes.large}
+                            onClick={handleOpen}
                         />
+                        <Modal
+                            aria-labelledby="transition-modal-title"
+                            aria-describedby="transition-modal-description"
+                            className={classes.modal}
+                            open={open}
+                            onClose={handleClose}
+                            closeAfterTransition
+                            BackdropComponent={Backdrop}
+                            BackdropProps={{
+                                timeout: 500,
+                            }}
+                        >
+                            <Fade in={open}>
+                                <div className={classes.paper}>
+                                    <h2 id="transition-modal-title">
+                                        Choose 5 descriptive emotions
+                                    </h2>
+                                    <h4 id="transition-modal-description">
+                                        <ul className={classes.emolist}>
+                                            <li>Doubtful</li>
+                                            <li>Uncertain</li>
+                                            <li>Bored</li>
+                                            <li>Indifferent</li>
+                                            <li>Enthusiastic</li>
+                                            <li>Lazy</li>
+                                            <li>Numb</li>
+                                            <li>Powerless</li>
+                                            <li>Invisible</li>
+                                            <li>Unfocused</li>
+                                        </ul>
+                                    </h4>
+                                </div>
+                            </Fade>
+                        </Modal>
                         <Avatar
                             variant="square"
                             src="../images/Emotionaly_Poor.png"
                             className={classes.large}
+                            onClick={handleOpen}
                         />
+                        <Modal
+                            aria-labelledby="transition-modal-title"
+                            aria-describedby="transition-modal-description"
+                            className={classes.modal}
+                            open={open}
+                            onClose={handleClose}
+                            closeAfterTransition
+                            BackdropComponent={Backdrop}
+                            BackdropProps={{
+                                timeout: 500,
+                            }}
+                        >
+                            <Fade in={open}>
+                                <div className={classes.paper}>
+                                    <h2 id="transition-modal-title">
+                                        Choose 5 descriptive emotions
+                                    </h2>
+                                    <h4 id="transition-modal-description">
+                                        <ul className={classes.emolist}>
+                                            <li>Anxious</li>
+                                            <li>Cautious</li>
+                                            <li>Lonely</li>
+                                            <li>Vulverable</li>
+                                            <li>Uneasy</li>
+                                            <li>Disappointed</li>
+                                            <li>Forgotten</li>
+                                            <li>Tired</li>
+                                            <li>Guilty</li>
+                                            <li>Longing</li>
+                                        </ul>
+                                    </h4>
+                                </div>
+                            </Fade>
+                        </Modal>
                         <Avatar
                             variant="square"
                             src="../images/Emotionaly_Rough.png"
                             className={classes.large}
                             onClick={(e) => handleClickEm(e)}
+                            onClick={handleOpen}
                         />
+                        <Modal
+                            aria-labelledby="transition-modal-title"
+                            aria-describedby="transition-modal-description"
+                            className={classes.modal}
+                            open={open}
+                            onClose={handleClose}
+                            closeAfterTransition
+                            BackdropComponent={Backdrop}
+                            BackdropProps={{
+                                timeout: 500,
+                            }}
+                        >
+                            <Fade in={open}>
+                                <div className={classes.paper}>
+                                    <h2 id="transition-modal-title">
+                                        Choose 5 descriptive emotions
+                                    </h2>
+                                    <h4 id="transition-modal-description">
+                                        <ul className={classes.emolist}>
+                                            <li>Self-critical</li>
+                                            <li>Annoyed</li>
+                                            <li>Jealous</li>
+                                            <li>Impatient</li>
+                                            <li>Defensive</li>
+                                            <li>Resentful</li>
+                                            <li>Frustrated</li>
+                                            <li>Furious</li>
+                                            <li>Irritated</li>
+                                            <li>Agressive</li>
+                                        </ul>
+                                    </h4>
+                                </div>
+                            </Fade>
+                        </Modal>
                     </div>
                 </Card>
             </div>
