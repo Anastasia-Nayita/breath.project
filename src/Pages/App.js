@@ -14,10 +14,6 @@ import theme from "../theme";
 
 ///////////////////////////
 
-import * as io from "socket.io-client";
-
-io.connect();
-
 export default class App extends React.Component {
     constructor(props) {
         super(props);

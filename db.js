@@ -64,7 +64,23 @@ module.exports.addMentChoice = (userId, mentally) => {
 
 module.exports.getChartPhysData = (userId) => {
     return db.query(
-        `SELECT userId, physically, created_at
+        `SELECT userId, physically, created_at,
+        TO_CHAR(
+        created_at,
+        'HH12:MIPM DD-MON'
+    ) created_at
+        FROM checkup WHERE userId = ($1)`,
+        [userId]
+    );
+};
+
+module.exports.getChartMentData = (userId) => {
+    return db.query(
+        `SELECT userId, mentally, created_at,
+        TO_CHAR(
+        created_at,
+        'HH12:MIPM DD-MON'
+    ) created_at
         FROM checkup WHERE userId = ($1)`,
         [userId]
     );

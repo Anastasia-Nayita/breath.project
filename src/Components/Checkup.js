@@ -125,8 +125,10 @@ export default function Checkup() {
         } else if (choice === "meh") {
             setImage("../images/Physically_Meh.png");
         }
-
-        scroll.scrollTo(725);
+        scroll.scrollTo(725, {
+            delay: 500,
+            smooth: true,
+        });
     };
 
     console.log("clicked  ", clicked);
@@ -159,7 +161,10 @@ export default function Checkup() {
             setImageM("../images/Mentally_Meh.png");
         }
 
-        scroll.scrollTo(1500);
+        scroll.scrollTo(1500, {
+            delay: 500,
+            smooth: true,
+        });
     };
 
     return (

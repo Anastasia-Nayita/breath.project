@@ -222,6 +222,17 @@ app.get("/chart/phys", async function (req, res) {
         console.log("err in /mentall: ", err);
     }
 });
+
+app.get("/chart/ment", async function (req, res) {
+    try {
+        const { rows } = await db.getChartMentData(req.session.userId);
+        console.log("all rows in /chart/ment", rows);
+        res.json(rows);
+    } catch (err) {
+        console.log("err in /mentall: ", err);
+    }
+});
+
 /////////////////////////////////////////////////
 
 app.get("*", function (req, res) {
