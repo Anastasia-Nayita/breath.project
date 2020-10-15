@@ -6,6 +6,9 @@ import Navbar from "../Components/Navbar.js";
 import Profilepic from "../Components/Profilepic.js";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Checkup from "../Components/Checkup";
+import Breathing from "../Components/Breathing";
+import Chart from "../Components/Chart";
+
 import { ThemeProvider } from "@material-ui/core/styles";
 import theme from "../theme";
 
@@ -50,6 +53,8 @@ export default class App extends React.Component {
                             }
                         />
                         <Route exact path="/" render={() => <Checkup />} />
+                        <Route path="/breathe" render={() => <Breathing />} />
+                        <Route path="/chart" render={() => <Chart />} />
                         <Route
                             exact
                             path="/profile"

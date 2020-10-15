@@ -61,3 +61,11 @@ module.exports.addMentChoice = (userId, mentally) => {
         [userId, mentally]
     );
 };
+
+module.exports.getChartPhysData = (userId) => {
+    return db.query(
+        `SELECT userId, physically, created_at
+        FROM checkup WHERE userId = ($1)`,
+        [userId]
+    );
+};

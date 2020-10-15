@@ -213,6 +213,15 @@ app.post("/mentall", async function (req, res) {
     }
 });
 
+app.get("/chart/phys", async function (req, res) {
+    try {
+        const { rows } = await db.getChartPhysData(req.session.userId);
+        // console.log("all rows in /chart/phys", rows);
+        res.json(rows);
+    } catch (err) {
+        console.log("err in /mentall: ", err);
+    }
+});
 /////////////////////////////////////////////////
 
 app.get("*", function (req, res) {
@@ -236,20 +245,4 @@ io.on("connection", (socket) => {
     socket.on("disconnect", () => {
         console.log("socket with id disconnected: ", socket.id);
     });
-
-    // socket.on("choice", async (newChoice) => {
-    //     console.log(" newChoice: ", newChoice);
-    //     const { rows } = await db.addPhysChoice(
-    //         socket.request.session.userId,
-    //         newChoice
-    //     );
-
-    //     const newPhysChoice = { ...rows[0] };
-    //     console.log("newPhysChoice", newPhysChoice);
-
-    // io.to(socket.request.session.userId).emit(
-    //     "newPhysChoice",
-    //     newPhysChoice
-    // );
-    //});
 });
