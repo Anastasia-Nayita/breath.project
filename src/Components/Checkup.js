@@ -32,8 +32,9 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         backgroundColor: theme.palette.background.paper,
         border: "2px solid #000",
+        borderRadius: "10%",
         boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3),
+        padding: theme.spacing(5, 15),
     },
     emolist: {
         listStyle: "none",
@@ -312,29 +313,38 @@ export default function Checkup() {
                                         Choose 5 descriptive emotions
                                     </h2>
                                     <h4 id="transition-modal-description">
-                                        {/* <List>
+                                        <List className={classes.emolist}>
                                             <ListItem button>
-                                                <ListItemText primary="Chelsea Otakan" />
+                                                <ListItemText primary="Confident" />
                                             </ListItem>
                                             <ListItem button>
-                                                <ListItemText
-                                                    inset
-                                                    primary="Eric Hoffman"
-                                                />
+                                                <ListItemText primary="Gratefull" />
                                             </ListItem>
-                                        </List> */}
-                                        <ul className={classes.emolist}>
-                                            <li>Confident</li>
-                                            <li>Gratefull</li>
-                                            <li>Delighted</li>
-                                            <li>Optimistic</li>
-                                            <li>Enthusiastic</li>
-                                            <li>Content</li>
-                                            <li>Joyful</li>
-                                            <li>Loving</li>
-                                            <li>Glad</li>
-                                            <li>Amused</li>
-                                        </ul>
+                                            <ListItem button>
+                                                <ListItemText primary="Delighted" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Optimistic" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Enthusiastic" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Content" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Joyful" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Loving" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Glad" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Amused" />
+                                            </ListItem>
+                                        </List>
                                     </h4>
                                 </div>
                             </Fade>
@@ -365,18 +375,38 @@ export default function Checkup() {
                                         Choose 5 descriptive emotions
                                     </h2>
                                     <h4 id="transition-modal-description">
-                                        <ul className={classes.emolist}>
-                                            <li>Accepted</li>
-                                            <li>Balanced</li>
-                                            <li>Rested</li>
-                                            <li>Calm</li>
-                                            <li>Peaceful</li>
-                                            <li>Patient</li>
-                                            <li>Grounded</li>
-                                            <li>Neutral</li>
-                                            <li>Focused</li>
-                                            <li>Caring</li>
-                                        </ul>
+                                        <List className={classes.emolist}>
+                                            <ListItem button>
+                                                <ListItemText primary="Accepted" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Balanced" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Rested" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Calm" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Peaceful" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Patient" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Grounded" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Neutral" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Focused" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Caring" />
+                                            </ListItem>
+                                        </List>
                                     </h4>
                                 </div>
                             </Fade>
@@ -406,18 +436,38 @@ export default function Checkup() {
                                         Choose 5 descriptive emotions
                                     </h2>
                                     <h4 id="transition-modal-description">
-                                        <ul className={classes.emolist}>
-                                            <li>Doubtful</li>
-                                            <li>Uncertain</li>
-                                            <li>Bored</li>
-                                            <li>Indifferent</li>
-                                            <li>Enthusiastic</li>
-                                            <li>Lazy</li>
-                                            <li>Numb</li>
-                                            <li>Powerless</li>
-                                            <li>Invisible</li>
-                                            <li>Unfocused</li>
-                                        </ul>
+                                        <List className={classes.emolist}>
+                                            <ListItem button>
+                                                <ListItemText primary="Doubtful" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Uncertain" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Bored" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Indifferent" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Clingy" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Lazy" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Numb" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Powerless" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Invisible" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Unfocused" />
+                                            </ListItem>
+                                        </List>
                                     </h4>
                                 </div>
                             </Fade>
@@ -447,18 +497,38 @@ export default function Checkup() {
                                         Choose 5 descriptive emotions
                                     </h2>
                                     <h4 id="transition-modal-description">
-                                        <ul className={classes.emolist}>
-                                            <li>Anxious</li>
-                                            <li>Cautious</li>
-                                            <li>Lonely</li>
-                                            <li>Vulverable</li>
-                                            <li>Uneasy</li>
-                                            <li>Disappointed</li>
-                                            <li>Forgotten</li>
-                                            <li>Tired</li>
-                                            <li>Guilty</li>
-                                            <li>Longing</li>
-                                        </ul>
+                                        <List className={classes.emolist}>
+                                            <ListItem button>
+                                                <ListItemText primary="Anxious" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Cautious" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Lonely" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Vulverable" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Uneasy" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Disappointed" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Forgotten" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Tired" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Guilty" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Longing" />
+                                            </ListItem>
+                                        </List>
                                     </h4>
                                 </div>
                             </Fade>
@@ -489,18 +559,38 @@ export default function Checkup() {
                                         Choose 5 descriptive emotions
                                     </h2>
                                     <h4 id="transition-modal-description">
-                                        <ul className={classes.emolist}>
-                                            <li>Self-critical</li>
-                                            <li>Annoyed</li>
-                                            <li>Jealous</li>
-                                            <li>Impatient</li>
-                                            <li>Defensive</li>
-                                            <li>Resentful</li>
-                                            <li>Frustrated</li>
-                                            <li>Furious</li>
-                                            <li>Irritated</li>
-                                            <li>Agressive</li>
-                                        </ul>
+                                        <List className={classes.emolist}>
+                                            <ListItem button>
+                                                <ListItemText primary="Self-critical" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Annoyed" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Jealous" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Impatient" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Defensive" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Resentful" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Frustrated" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Furious" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Irritated" />
+                                            </ListItem>
+                                            <ListItem button>
+                                                <ListItemText primary="Agressive" />
+                                            </ListItem>
+                                        </List>
                                     </h4>
                                 </div>
                             </Fade>

@@ -22,7 +22,7 @@ export default function ChartTest() {
                     },
                     stacked: true,
                     ticks: {
-                        fontColor: "rgb(204, 204, 204)",
+                        // fontColor: "rgb(204, 204, 204)",
                     },
                 },
             ],
@@ -34,7 +34,7 @@ export default function ChartTest() {
                     },
                     stacked: true,
                     ticks: {
-                        fontColor: "rgb(204, 204, 204)",
+                        // fontColor: "rgb(204, 204, 204)",
                         callback: function (value) {
                             if (value == "500") {
                                 return (value = "great");
@@ -59,8 +59,9 @@ export default function ChartTest() {
     };
     const chart = () => {
         let physCond = [];
-        let timePer = [];
+        let timePerP = [];
         let mentCond = [];
+        let timePerM = [];
 
         Promise.all([axios.get("/chart/phys"), axios.get("/chart/ment")])
             .then(([resp, resm]) => {
@@ -77,15 +78,15 @@ export default function ChartTest() {
                             meh: 300,
                             poor: 200,
                             rough: 100,
-                            null: null,
+                            // null: null,
                         }[dataObj.physically]
                     );
                     // physCond.push(parseInt(dataObj.physically));
-                    timePer.push(dataObj.created_at);
+                    timePerP.push(dataObj.created_at);
                 }
 
                 setDataChartP({
-                    labels: timePer,
+                    labels: timePerP,
                     datasets: [
                         {
                             label: "Physical state",
@@ -107,15 +108,15 @@ export default function ChartTest() {
                             meh: 300,
                             poor: 200,
                             rough: 100,
-                            null: null,
+                            // null: null,
                         }[dataObj.mentally]
                     );
                     // physCond.push(parseInt(dataObj.physically));
-                    timePer.push(dataObj.created_at);
+                    timePerM.push(dataObj.created_at);
                 }
 
                 setDataChartM({
-                    labels: timePer,
+                    labels: timePerM,
                     datasets: [
                         {
                             label: "Mental state",

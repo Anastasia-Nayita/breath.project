@@ -69,7 +69,10 @@ module.exports.getChartPhysData = (userId) => {
         created_at,
         'HH12:MIPM DD-MON'
     ) created_at
-        FROM checkup WHERE userId = ($1)`,
+        FROM checkup 
+        WHERE userId = ($1) 
+    AND physically IS NOT NULL
+        `,
         [userId]
     );
 };
@@ -81,7 +84,10 @@ module.exports.getChartMentData = (userId) => {
         created_at,
         'HH12:MIPM DD-MON'
     ) created_at
-        FROM checkup WHERE userId = ($1)`,
+        FROM checkup 
+        WHERE userId = ($1) 
+        AND mentally IS NOT NULL
+        `,
         [userId]
     );
 };
