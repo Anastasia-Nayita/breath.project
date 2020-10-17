@@ -28,3 +28,13 @@ li {
 li:hover {
     background-color: plum;
 }
+.block {
+    padding: 10% 23%;
+    text-align: center;
+    display: grid;
+}
+.nav-links {
+    margin: 0 20%;
+    text-decoration: none;
+    color: black;
+}

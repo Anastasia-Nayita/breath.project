@@ -112,6 +112,11 @@ app.post("/register", (req, res) => {
 });
 
 //////////////////////////////////////////
+app.get("/logout", (req, res) => {
+    req.session = null;
+    res.redirect("/welcome");
+    //res.json({ err: false });
+});
 
 app.get("/login", (req, res) => {
     if (req.session.userId) {
@@ -133,7 +138,6 @@ app.post("/login", (req, res) => {
                             if (result) {
                                 req.session.userId = userId;
                                 res.json({ err: false });
-                                //res.redirect("/");
                             } else {
                                 res.json({ err: true });
                             }
@@ -167,16 +171,18 @@ app.post("/uploader", uploader.single("file"), s3.upload, async function (
     req,
     res
 ) {
+    console.log("req", req.file);
     var imageUrl;
     if (req.body.imageLink) {
         imageUrl = req.body.imageLink;
     } else {
         const filename = req.file.filename;
         imageUrl = `${s3Url}${filename}`;
+        console.log("imageUrl", imageUrl);
     }
 
     try {
-        const { rows } = await db.addProfilePic(req.session.userId);
+        const { rows } = await db.addProfilePic(imageUrl, req.session.userId);
         res.json(rows[0]);
     } catch (err) {
         console.log("err in addProfilePic: ", err);

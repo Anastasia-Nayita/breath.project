@@ -11,6 +11,7 @@ import Fade from "@material-ui/core/Fade";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+//import amber from "@material-ui/core/colors/amber";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
             margin: theme.spacing(1),
         },
     },
+
     cards: {
         height: 550,
         textAlign: "center",
@@ -42,6 +44,15 @@ const useStyles = makeStyles((theme) => ({
         gridTemplateColumns: "1fr 1fr",
         textAlign: "center",
     },
+    emolistItem: {
+        "&:hover": {
+            backgroundColor: "#FFEECB",
+        },
+        // "&$selected": {
+        //     backgroundColor: "#B5AA99",
+        // },
+    },
+
     large: {
         textAlign: "center",
         width: theme.spacing(10),
@@ -63,6 +74,7 @@ export default function Checkup() {
     const [openMeh, setOpenMeh] = useState(false);
     const [openPoor, setOpenPoor] = useState(false);
     const [openRough, setOpenRough] = useState(false);
+    //const [selectedIndex, setSelectedIndex] = useState(1);
 
     const handleOpen = (e) => {
         console.log("e.currentTarget.id: ", e.currentTarget.id);
@@ -110,7 +122,7 @@ export default function Checkup() {
             console.log("data in try - axios", data);
 
             setClicked(true);
-            //console.log("clicked in try", { clicked });
+            console.log("clicked in try", { clicked });
         } catch (err) {
             console.log("err: ", err);
         }
@@ -168,6 +180,12 @@ export default function Checkup() {
         });
     };
 
+    const handleClickEm = async (value) => {
+        console.log("value", value);
+        setClicked(true);
+        // setSelectedIndex(index);
+    };
+
     return (
         <div>
             <div className="checkup-block">
@@ -187,7 +205,7 @@ export default function Checkup() {
                             style={{ margin: "5% 0" }}
                             variant="contained"
                             color="primary"
-                            value="good"
+                            value="amber"
                             onClick={(e) => handleClickPh(e)}
                         >
                             good
@@ -314,34 +332,106 @@ export default function Checkup() {
                                     </h2>
                                     <h4 id="transition-modal-description">
                                         <List className={classes.emolist}>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                //selected={selectedIndex === 0}
+                                                button
+                                                onClick={() =>
+                                                    handleClickEm("Confident")
+                                                }
+                                            >
                                                 <ListItemText primary="Confident" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                                value="Gratefull"
+                                                onClick={() =>
+                                                    handleClickEm("Gratefull")
+                                                }
+                                            >
                                                 <ListItemText primary="Gratefull" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                                onClick={() =>
+                                                    handleClickEm("Delighted")
+                                                }
+                                                value="Delighted"
+                                            >
                                                 <ListItemText primary="Delighted" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                                onClick={() =>
+                                                    handleClickEm("Optimistic")
+                                                }
+                                                value="Optimistic"
+                                            >
                                                 <ListItemText primary="Optimistic" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                                onClick={() =>
+                                                    handleClickEm(
+                                                        "Enthusiastic"
+                                                    )
+                                                }
+                                                value="Enthusiastic"
+                                            >
                                                 <ListItemText primary="Enthusiastic" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                                onClick={() =>
+                                                    handleClickEm("Content")
+                                                }
+                                                value="Content"
+                                            >
                                                 <ListItemText primary="Content" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                                onClick={() =>
+                                                    handleClickEm("Joyful")
+                                                }
+                                                value="Joyful"
+                                            >
                                                 <ListItemText primary="Joyful" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                                onClick={() =>
+                                                    handleClickEm("Loving")
+                                                }
+                                                value="Loving"
+                                            >
                                                 <ListItemText primary="Loving" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                                onClick={() =>
+                                                    handleClickEm("Glad")
+                                                }
+                                                value="Glad"
+                                            >
                                                 <ListItemText primary="Glad" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                                onClick={() =>
+                                                    handleClickEm("Amused")
+                                                }
+                                                value="Amused"
+                                            >
                                                 <ListItemText primary="Amused" />
                                             </ListItem>
                                         </List>
@@ -376,34 +466,64 @@ export default function Checkup() {
                                     </h2>
                                     <h4 id="transition-modal-description">
                                         <List className={classes.emolist}>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Accepted" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Balanced" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Rested" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Calm" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Peaceful" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Patient" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Grounded" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Neutral" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Focused" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Caring" />
                                             </ListItem>
                                         </List>
@@ -437,34 +557,64 @@ export default function Checkup() {
                                     </h2>
                                     <h4 id="transition-modal-description">
                                         <List className={classes.emolist}>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Doubtful" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Uncertain" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Bored" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Indifferent" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Clingy" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Lazy" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Numb" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Powerless" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Invisible" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Unfocused" />
                                             </ListItem>
                                         </List>
@@ -498,34 +648,64 @@ export default function Checkup() {
                                     </h2>
                                     <h4 id="transition-modal-description">
                                         <List className={classes.emolist}>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Anxious" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Cautious" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Lonely" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Vulverable" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Uneasy" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Disappointed" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Forgotten" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Tired" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Guilty" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Longing" />
                                             </ListItem>
                                         </List>
@@ -560,34 +740,64 @@ export default function Checkup() {
                                     </h2>
                                     <h4 id="transition-modal-description">
                                         <List className={classes.emolist}>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Self-critical" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Annoyed" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Jealous" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Impatient" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Defensive" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Resentful" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Frustrated" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Furious" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Irritated" />
                                             </ListItem>
-                                            <ListItem button>
+                                            <ListItem
+                                                className={classes.emolistItem}
+                                                button
+                                            >
                                                 <ListItemText primary="Agressive" />
                                             </ListItem>
                                         </List>

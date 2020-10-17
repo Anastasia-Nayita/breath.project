@@ -12,7 +12,7 @@ import theme from "../theme";
 export default function Welcome() {
     return (
         <div id="welcome">
-            <h1>Welcome mate!</h1>
+            {/* <h1>Welcome mate!</h1> */}
             <ThemeProvider theme={theme}>
                 <App />
                 <HashRouter>

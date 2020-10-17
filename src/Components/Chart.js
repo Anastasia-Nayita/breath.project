@@ -3,8 +3,20 @@ import { Line } from "react-chartjs-2";
 //import "./chart.css";
 import axios from "../axios.js";
 import promise from "redux-promise";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles(() => ({
+    title: {
+        textAlign: "center",
+    },
+    titleSmaller: {
+        textAlign: "center",
+    },
+}));
 
 export default function ChartTest() {
+    const classes = useStyles();
+
     const [dataChartP, setDataChartP] = useState({});
     const [dataChartM, setDataChartM] = useState({});
     const [timePeriods, setTimePeriods] = useState([]);
@@ -144,10 +156,10 @@ export default function ChartTest() {
 
     return (
         <div className="container">
-            <h1>Charts charts charts</h1>
-            <h3>Physically</h3>
+            <h1 className={classes.title}>charts charts charts</h1>
+            <h3 className={classes.titleSmaller}>Physically</h3>
             <Line data={dataChartP} options={options} />
-            <h3>Mentally</h3>
+            <h3 className={classes.titleSmaller}>Mentally</h3>
             <Line data={dataChartM} options={options} />
         </div>
     );

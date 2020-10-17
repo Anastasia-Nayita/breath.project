@@ -11,6 +11,7 @@ export default class Uploader extends React.Component {
     }
 
     handleInput(e) {
+        console.log("it runs");
         this.setState({
             file: e.target.files[0],
         });
@@ -26,12 +27,18 @@ export default class Uploader extends React.Component {
     }
     handleClick(e) {
         e.preventDefault();
+
         var formData = new FormData();
-        if (!this.state.imageLink) {
+
+        if (!this.state.image) {
+            console.log("part 1 runs");
+            console.log("this.state: ", this.state);
             formData.append("file", this.state.file);
         } else {
+            console.log("part 2 runs");
             formData.append("imageLink", this.state.imageLink);
         }
+        console.log("formData", formData);
         axios
             .post("/uploader", formData)
             .then((response) => {

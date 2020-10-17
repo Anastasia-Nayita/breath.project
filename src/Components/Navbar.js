@@ -3,24 +3,6 @@ import { Link } from "react-router-dom";
 //import Modal from "react-modal";
 import FeatherIcon from "feather-icons-react";
 
-//Modal.setAppElement("body");
-
-// export default function Navbar({ profilepic }) {
-//     return (
-//         <div className="navbar">
-//             <div className="nav-item">
-//                 <a className="nav-links" href="/logout">
-//                     <FeatherIcon icon="log-out" />
-//                 </a>
-//             </div>
-
-//             <Link to="/profile" className="nav-links">
-//                 {profilepic}
-//             </Link>
-//         </div>
-//     );
-// }
-
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -40,10 +22,17 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
     menuButton: {
-        marginRight: theme.spacing(2),
+        marginRight: theme.spacing(4),
+        ///
+    },
+    chartmenu: {
+        padding: theme.spacing(10),
+        marginTop: theme.spacing(6),
     },
     title: {
         flexGrow: 1,
+        textAlign: "center",
+        //color: "white",
     },
 }));
 
@@ -79,6 +68,7 @@ export default function Navbar({ profilepic }) {
                     label={auth ? "Logout" : "Login"}
                 />
             </FormGroup>
+
             <AppBar position="static">
                 <Toolbar>
                     <IconButton
@@ -87,10 +77,34 @@ export default function Navbar({ profilepic }) {
                         color="inherit"
                         aria-label="menu"
                     >
-                        <FeatherIcon icon="menu" />
+                        <FeatherIcon icon="menu" onClick={handleMenu} />
+                        <Menu
+                            className={classes.chartmenu}
+                            id="menu-appbar"
+                            anchorEl={anchorEl}
+                            anchorOrigin={{
+                                vertical: "top",
+                                horizontal: "left",
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: "top",
+                                horizontal: "left",
+                            }}
+                            open={open}
+                            onClose={handleClose}
+                        >
+                            <MenuItem onClick={handleClose}>
+                                <Link to="/chart" className="nav-links">
+                                    charts
+                                </Link>
+                            </MenuItem>
+                        </Menu>{" "}
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
-                        check-up
+                        <Link to="/" className="nav-links">
+                            take a breath
+                        </Link>
                     </Typography>
                     {auth && (
                         <div>
@@ -98,38 +112,17 @@ export default function Navbar({ profilepic }) {
                                 aria-label="account of current user"
                                 aria-controls="menu-appbar"
                                 aria-haspopup="true"
-                                onClick={handleMenu}
                                 color="inherit"
                             >
                                 <Link to="/profile" className="nav-links">
                                     {profilepic}
                                 </Link>
+
+                                {` `}
                                 <a className="nav-links" href="/logout">
                                     <FeatherIcon icon="log-out" />
                                 </a>
                             </IconButton>
-                            <Menu
-                                id="menu-appbar"
-                                anchorEl={anchorEl}
-                                anchorOrigin={{
-                                    vertical: "top",
-                                    horizontal: "right",
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: "top",
-                                    horizontal: "right",
-                                }}
-                                open={open}
-                                onClose={handleClose}
-                            >
-                                <MenuItem onClick={handleClose}>
-                                    Profile
-                                </MenuItem>
-                                <MenuItem onClick={handleClose}>
-                                    My account
-                                </MenuItem>
-                            </Menu>
                         </div>
                     )}
                 </Toolbar>
