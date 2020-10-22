@@ -219,6 +219,20 @@ app.post("/mentall", async function (req, res) {
     }
 });
 
+app.post("/emotional", async function (req, res) {
+    console.log("req.body", req.body);
+    try {
+        const { rows } = await db.addEmoChoice(
+            req.session.userId,
+            req.body.newEmoChoice
+        );
+        //console.log("rows[0] in /user/", rows[0]);
+        res.json(rows[0]);
+    } catch (err) {
+        console.log("err in /physical: ", err);
+    }
+});
+
 app.get("/chart/phys", async function (req, res) {
     try {
         const { rows } = await db.getChartPhysData(req.session.userId);

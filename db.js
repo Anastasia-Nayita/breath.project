@@ -62,6 +62,17 @@ module.exports.addMentChoice = (userId, mentally) => {
     );
 };
 
+module.exports.addEmoChoice = (userId, emotionally) => {
+    console.log("staff from db: ", userId, emotionally);
+    return db.query(
+        `INSERT INTO checkup
+        (userId, emotionally)
+       VALUES ($1, $2)
+       RETURNING *`,
+        [userId, emotionally]
+    );
+};
+
 module.exports.getChartPhysData = (userId) => {
     return db.query(
         `SELECT userId, physically, created_at,

@@ -117,8 +117,6 @@ export default function Navbar({ profilepic }) {
                                 <Link to="/profile" className="nav-links">
                                     {profilepic}
                                 </Link>
-
-                                {` `}
                                 <a className="nav-links" href="/logout">
                                     <FeatherIcon icon="log-out" />
                                 </a>
