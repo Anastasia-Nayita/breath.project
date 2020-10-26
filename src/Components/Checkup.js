@@ -29,7 +29,6 @@ export default function Checkup() {
 
     const handleClickPh = async (e) => {
         e.preventDefault();
-        // console.log("choice: ", e.currentTarget.value);
         let choice = e.currentTarget.value;
 
         try {
@@ -37,7 +36,6 @@ export default function Checkup() {
             console.log("data in try - axios", data);
 
             setClicked(true);
-            // console.log("clicked in try", { clicked });
         } catch (err) {
             console.log("err: ", err);
         }
@@ -60,7 +58,6 @@ export default function Checkup() {
     };
 
     const handleMouseOverPh = async (e) => {
-        //console.log("e.currentTarget.value: ", e.currentTarget.value);
         let choice = e.currentTarget.value;
         if (choice === "great") {
             setImage("../images/Physically_Great.png");
@@ -80,7 +77,6 @@ export default function Checkup() {
 
     const handleClickMn = async (e) => {
         e.preventDefault();
-        //console.log("choice: ", e.currentTarget.value);
         let choice = e.currentTarget.value;
 
         try {
@@ -88,7 +84,6 @@ export default function Checkup() {
             console.log("data in try - axios", data);
 
             setClicked(true);
-            //console.log("clicked in try", { clicked });
         } catch (err) {
             console.log("err: ", err);
         }

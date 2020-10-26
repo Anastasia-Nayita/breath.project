@@ -10,7 +10,6 @@ import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(() => ({
     card: {
-        // height: 550,
         textAlign: "center",
         margin: "5% 10%",
     },
@@ -28,8 +27,7 @@ const useStyles = makeStyles(() => ({
 
 export default function Breathe() {
     const classes = useStyles();
-    // const { progress } = useState;
-    //const howMuch = 1;
+
     const [howMuch, setHowMuch] = useState("");
     const [howManyCycles, sethowManyCycles] = useState("");
     const [timerActive, setTimerActive] = useState(false);
@@ -45,15 +43,11 @@ export default function Breathe() {
 
         console.log("a", a);
     };
-    //console.log("howmuch2", howMuch);
 
     const handleKeyPress = (e) => {
         if (e.key === "Enter") {
             console.log("enter press here! ");
-            //const a = howMuch / 0.133333;
-            // sethowManyCycles(a);
-            // console.log("howManyCycles", howManyCycles);
-            // console.log("a", a);
+
             setTimerActive(true);
             setLoopActive(true);
             sethowManyCycles(1);
@@ -62,14 +56,9 @@ export default function Breathe() {
 
     const onFinish = ({ progress }) => {
         console.log("this is finish!");
-        //sethowManyCycles(+1);
-        // console.log("howManyCycles: ", howManyCycles);
 
         if (progress === 1 && howManyCycles != howMuch) {
-            //setTimerActive(false);
-
             sethowManyCycles(howManyCycles + 1);
-            //   console.log("howManyCycles: ", howManyCycles);
             setTimerActive(true);
         } else if (howManyCycles == howMuch) {
             console.log("eNOUGH");
@@ -79,20 +68,13 @@ export default function Breathe() {
 
     const onTimeUpdate = ({ progress }) => {
         if (howManyCycles & 1) {
-            console.log("howManyCycles: ", howManyCycles);
-            console.log("нечетное");
             setCondComponent("inhale");
         } else {
-            console.log("howManyCycles: ", howManyCycles);
-            console.log("четное");
             setCondComponent("exhale");
         }
         console.log("this is update!");
-        //setProgress({ progress });
-        // console.log("progress", progress);
     };
     const onClickStop = (e) => {
-        /// e.preventDefault();
         setTimerActive(false);
     };
     return (

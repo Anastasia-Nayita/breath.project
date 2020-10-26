@@ -6,7 +6,6 @@ const db = require("./db");
 const bc = require("./bc.js");
 const csurf = require("csurf");
 const cryptoRandomString = require("crypto-random-string");
-//const { sendEmail } = require("./ses");
 const multer = require("multer");
 const path = require("path");
 const s3 = require("./s3");
@@ -81,11 +80,8 @@ app.get("/welcome", (req, res) => {
     }
 });
 
-//////////////////////////////////////////
-
 app.post("/register", (req, res) => {
     const { first, last, email, password } = req.body;
-    //console.log("req.body in register", req.body);
     if (first != "" && last != "" && email != "" && password != "") {
         bc.hash(password)
             .then((hashedPassword) => {
@@ -111,11 +107,9 @@ app.post("/register", (req, res) => {
     }
 });
 
-//////////////////////////////////////////
 app.get("/logout", (req, res) => {
     req.session = null;
     res.redirect("/welcome");
-    //res.json({ err: false });
 });
 
 app.get("/login", (req, res) => {
@@ -154,13 +148,9 @@ app.post("/login", (req, res) => {
     }
 });
 
-/////////////////////////////////////////////////
-
 app.get("/user", async function (req, res) {
-    //console.log("req.session in app.get.user : ", req.session);
     try {
         const { rows } = await db.getUserDataById(req.session.userId);
-        //console.log("rows[0] in /user/", rows[0]);
         res.json(rows[0]);
     } catch (err) {
         console.log("err in getUserDataById: ", err);
@@ -190,14 +180,12 @@ app.post("/uploader", uploader.single("file"), s3.upload, async function (
 });
 
 app.post("/physical", async function (req, res) {
-    //console.log("req.session in app.get.user : ", req.session);
     console.log("req.body", req.body);
     try {
         const { rows } = await db.addPhysChoice(
             req.session.userId,
             req.body.choice
         );
-        //console.log("rows[0] in /user/", rows[0]);
         res.json(rows[0]);
     } catch (err) {
         console.log("err in /physical: ", err);
@@ -205,14 +193,12 @@ app.post("/physical", async function (req, res) {
 });
 
 app.post("/mentall", async function (req, res) {
-    //console.log("req.session in app.get.user : ", req.session);
     console.log("req.body", req.body);
     try {
         const { rows } = await db.addMentChoice(
             req.session.userId,
             req.body.choice
         );
-        //console.log("rows[0] in /user/", rows[0]);
         res.json(rows[0]);
     } catch (err) {
         console.log("err in /mentall: ", err);
@@ -226,7 +212,6 @@ app.post("/emotional", async function (req, res) {
             req.session.userId,
             req.body.newEmoChoice
         );
-        //console.log("rows[0] in /user/", rows[0]);
         res.json(rows[0]);
     } catch (err) {
         console.log("err in /physical: ", err);
@@ -236,7 +221,6 @@ app.post("/emotional", async function (req, res) {
 app.get("/chart/phys", async function (req, res) {
     try {
         const { rows } = await db.getChartPhysData(req.session.userId);
-        // console.log("all rows in /chart/phys", rows);
         res.json(rows);
     } catch (err) {
         console.log("err in /mentall: ", err);
@@ -253,8 +237,6 @@ app.get("/chart/ment", async function (req, res) {
     }
 });
 
-/////////////////////////////////////////////////
-
 app.get("*", function (req, res) {
     if (!req.session.userId) {
         res.redirect("/welcome");
@@ -269,7 +251,6 @@ server.listen(8080, function () {
 
 io.on("connection", (socket) => {
     console.log(`socket with ${socket.id} connected`);
-    //console.log( "socket.request.session.userId: ",  socket.request.session.userId );
     if (!socket.request.session.userId) {
         return socket.disconnect(true);
     }

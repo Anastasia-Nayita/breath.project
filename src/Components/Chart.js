@@ -22,8 +22,6 @@ export default function ChartTest() {
     const [timePeriods, setTimePeriods] = useState([]);
     const [physConditions, setPhysConditions] = useState([]);
 
-    ////to_char(current_timestamp, 'Day, DD  HH12:MI:SS')
-
     const options = {
         scales: {
             xAxes: [
@@ -33,9 +31,6 @@ export default function ChartTest() {
                         borderDash: [3, 3],
                     },
                     stacked: true,
-                    ticks: {
-                        // fontColor: "rgb(204, 204, 204)",
-                    },
                 },
             ],
             yAxes: [
@@ -46,7 +41,6 @@ export default function ChartTest() {
                     },
                     stacked: true,
                     ticks: {
-                        // fontColor: "rgb(204, 204, 204)",
                         callback: function (value) {
                             if (value == "500") {
                                 return (value = "great");
@@ -77,11 +71,6 @@ export default function ChartTest() {
 
         Promise.all([axios.get("/chart/phys"), axios.get("/chart/ment")])
             .then(([resp, resm]) => {
-                // console.log("res in get chart/phys: ", resp);
-
-                // console.log("res in get chart/ment: ", resm);
-                // console.log("WOW");
-                ///////////////////////////////// PHYS
                 for (const dataObj of resp.data) {
                     physCond.push(
                         {
@@ -90,10 +79,8 @@ export default function ChartTest() {
                             meh: 300,
                             poor: 200,
                             rough: 100,
-                            // null: null,
                         }[dataObj.physically]
                     );
-                    // physCond.push(parseInt(dataObj.physically));
                     timePerP.push(dataObj.created_at);
                 }
 
@@ -123,7 +110,6 @@ export default function ChartTest() {
                             // null: null,
                         }[dataObj.mentally]
                     );
-                    // physCond.push(parseInt(dataObj.physically));
                     timePerM.push(dataObj.created_at);
                 }
 
@@ -145,9 +131,6 @@ export default function ChartTest() {
             .catch((err) => {
                 console.log("err in chart", err);
             });
-        // console.log("physCond: ", physCond);
-        // console.log("mentCond: ", mentCond);
-        // console.log("timePer: ", timePer);
     };
 
     useEffect(() => {

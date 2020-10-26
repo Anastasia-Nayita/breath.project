@@ -85,7 +85,6 @@ export default function Emotionally() {
     const [emoChoice, setEmoChoice] = useState([]);
 
     const handleOpen = (e) => {
-        //console.log("e.currentTarget.id: ", e.currentTarget.id);
         if (e.currentTarget.id == "Great") {
             setOpenGreat(true);
         } else if (e.currentTarget.id == "Good") {
@@ -108,7 +107,6 @@ export default function Emotionally() {
     };
 
     const handleEmochoice = (e, newEmoChoice) => {
-        //console.log("e.currentTarget.", e.currentTarget);
         if (newEmoChoice.length < 6) {
             setEmoChoice(newEmoChoice);
             console.log("NEWemochoice: ", newEmoChoice);
@@ -125,9 +123,6 @@ export default function Emotionally() {
             }
         }
     };
-
-    // setClicked(true);
-    // setSelectedIndex(index);
 
     return (
         <>
