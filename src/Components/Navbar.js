@@ -2,6 +2,8 @@
 import { Link } from "react-router-dom";
 //import Modal from "react-modal";
 import FeatherIcon from "feather-icons-react";
+import Button from "@material-ui/core/Button";
+import ToggleButton from "@material-ui/lab/ToggleButton";
 
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
@@ -21,6 +23,11 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
     },
+    MuiMenuItem: {
+        root: {
+            display: "block",
+        },
+    },
     menuButton: {
         marginRight: theme.spacing(4),
         ///
@@ -28,11 +35,12 @@ const useStyles = makeStyles((theme) => ({
     chartmenu: {
         padding: theme.spacing(10),
         marginTop: theme.spacing(6),
+        display: "inline-flex",
     },
     title: {
         flexGrow: 1,
         textAlign: "center",
-        //color: "white",
+        margin: "0 20%",
     },
 }));
 
@@ -71,40 +79,32 @@ export default function Navbar({ profilepic }) {
 
             <AppBar position="static">
                 <Toolbar>
-                    <IconButton
-                        edge="start"
-                        className={classes.menuButton}
-                        color="inherit"
-                        aria-label="menu"
+                    <FeatherIcon icon="menu" onClick={handleMenu} />
+                    <Menu
+                        className={classes.chartmenu}
+                        id="menu-appbar"
+                        anchorEl={anchorEl}
+                        anchorOrigin={{
+                            vertical: "top",
+                            horizontal: "left",
+                        }}
+                        keepMounted
+                        transformOrigin={{
+                            vertical: "top",
+                            horizontal: "left",
+                        }}
+                        open={open}
+                        onClose={handleClose}
                     >
-                        <FeatherIcon icon="menu" onClick={handleMenu} />
-                        <Menu
-                            className={classes.chartmenu}
-                            id="menu-appbar"
-                            anchorEl={anchorEl}
-                            anchorOrigin={{
-                                vertical: "top",
-                                horizontal: "left",
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: "top",
-                                horizontal: "left",
-                            }}
-                            open={open}
-                            onClose={handleClose}
-                        >
-                            <MenuItem onClick={handleClose}>
-                                <Link to="/chart" className="nav-links">
-                                    charts
-                                </Link>
-                            </MenuItem>
-                        </Menu>{" "}
-                    </IconButton>
+                        <MenuItem onClick={handleClose}>
+                            <Link to="/chart">charts</Link>
+                        </MenuItem>
+                        <MenuItem>
+                            <Link to="/breathe">breathing timer</Link>
+                        </MenuItem>
+                    </Menu>
                     <Typography variant="h6" className={classes.title}>
-                        <Link to="/" className="nav-links">
-                            take a breath
-                        </Link>
+                        <Link to="/">take a breath</Link>
                     </Typography>
                     {auth && (
                         <div>
@@ -114,10 +114,8 @@ export default function Navbar({ profilepic }) {
                                 aria-haspopup="true"
                                 color="inherit"
                             >
-                                <Link to="/profile" className="nav-links">
-                                    {profilepic}
-                                </Link>
-                                <a className="nav-links" href="/logout">
+                                <Link to="/profile">{profilepic}</Link>
+                                <a href="/logout">
                                     <FeatherIcon icon="log-out" />
                                 </a>
                             </IconButton>

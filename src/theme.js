@@ -1,4 +1,4 @@
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createMuiTheme, createStyles } from "@material-ui/core/styles";
 import amber from "@material-ui/core/colors/amber";
 
 const theme = createMuiTheme({
@@ -18,12 +18,38 @@ const theme = createMuiTheme({
             main: "#FFEECB",
         },
     },
-    // overrides: {
-    //     MuiCard: {
-    //         root: {
-    //             variant: "outlined",
-    //         },
-    //     },
-    // },
+    overrides: {
+        MuiMenuItem: createStyles({
+            root: {
+                gap: "10%",
+                width: "auto",
+                whiteSpace: "nowrap",
+                textDecoration: "none",
+            },
+        }),
+        MuiList: createStyles({
+            root: {
+                width: "100%",
+                padding: "5%",
+            },
+
+            padding: {
+                padding: "10%",
+            },
+        }),
+        MuiMenu: createStyles({
+            list: {
+                width: "100%",
+            },
+            paper: {
+                width: "auto",
+            },
+        }),
+        MuiPopover: createStyles({
+            paper: {
+                minWidth: "180px",
+            },
+        }),
+    },
 });
 export default theme;

@@ -10,10 +10,15 @@ import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles(() => ({
     card: {
-        height: 550,
+        // height: 550,
         textAlign: "center",
-        margin: "10%",
+        margin: "5% 10%",
     },
+    title: {
+        marginTop: "5%",
+        textAlign: "center",
+    },
+
     breathe: {
         position: "relative",
         top: "30%",
@@ -91,90 +96,42 @@ export default function Breathe() {
         setTimerActive(false);
     };
     return (
-        <Card className={classes.card}>
-            <Paper>
-                <InputLabel>How many minutes do we have?</InputLabel>
-                <Input
-                    // style={{ textAlign: "center" }}
-                    id="howmuch-inp"
-                    onChange={(e) => handleChange(e)}
-                    onKeyPress={(e) => handleKeyPress(e)}
-                />
-            </Paper>
-            <Button
-                style={{ margin: "5% 0" }}
-                variant="contained"
-                color="secondary"
-                onClick={(e) => onClickStop(e)}
-            >
-                Stop
-            </Button>
-            <div className={classes.breathe}>{condComponent}</div>
+        <>
+            <h1 className={classes.title}>Breathing timer</h1>
+            <Card className={classes.card}>
+                <Paper>
+                    <InputLabel>How many minutes do we have?</InputLabel>
+                    <Input
+                        id="howmuch-inp"
+                        onChange={(e) => handleChange(e)}
+                        onKeyPress={(e) => handleKeyPress(e)}
+                    />
+                </Paper>
+                <Button
+                    style={{ margin: "5% 0" }}
+                    variant="contained"
+                    color="secondary"
+                    onClick={(e) => onClickStop(e)}
+                >
+                    Stop
+                </Button>
+                <div className={classes.breathe}>{condComponent}</div>
 
-            <Timer
-                active={timerActive}
-                loop={loopActive}
-                onTimeUpdate={(e) => onTimeUpdate(e)}
-                onFinish={(e) => onFinish(e)}
-                //onStop={(e) => onClickStop(e)}
-                duration={8000}
-            >
-                <CircleIndicator
-                    fill="#AC9160"
-                    size={300}
-                    stroke="#fff"
-                    strokeBackground="transparent"
-                />
-            </Timer>
-        </Card>
+                <Timer
+                    active={timerActive}
+                    loop={loopActive}
+                    onTimeUpdate={(e) => onTimeUpdate(e)}
+                    onFinish={(e) => onFinish(e)}
+                    duration={8000}
+                >
+                    <CircleIndicator
+                        fill="#AC9160"
+                        size={300}
+                        stroke="#fff"
+                        strokeBackground="transparent"
+                    />
+                </Timer>
+            </Card>
+        </>
     );
 }
-
-//////////////////////////////////////////////////
-
-// import { CountdownCircleTimer } from "react-countdown-circle-timer";
-// var i = 0;
-// const renderTime = ({ remainingTime }) => {
-//     //console.log("remainingTime", remainingTime);
-//     ///console.log("key", key );
-
-//     if (remainingTime === 0) {
-//         i = i + 1;
-//         return <div className="timer">Pause</div>;
-//     }
-//     console.log("i", i);
-
-//     if ({i % 2 = 0})
-//         return (
-//             <div className="timer">
-//                 <div className="text-timer">Inhale</div>
-//                 <div className="value">{remainingTime}</div>
-//             </div>
-//         );
-// };
-
-// export default function Breathe() {
-//     var [key, setKey] = useState(0);
-
-//     //setKey(key + 1);
-
-//     return (
-//         <div className="Breathe">
-//             <h1>Breathing timer</h1>
-//             <div className="timer-wrapper">
-//                 <CountdownCircleTimer
-//                     isPlaying
-//                     duration={8}
-//                     colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
-//                     onComplete={() => {
-//                         setKey(key + 1);
-//                         //console.log("key inside", key);
-//                         return [true, 1000];
-//                     }}
-//                 >
-//                     {renderTime}
-//                 </CountdownCircleTimer>
-//             </div>
-//         </div>
-//     );
-// }

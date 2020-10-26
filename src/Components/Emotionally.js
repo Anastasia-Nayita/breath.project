@@ -47,6 +47,14 @@ const useStyles = makeStyles((theme) => ({
     },
     emolistItem: {
         textAlign: "center",
+        border: "1px solid rgba(0, 0, 0, 0.38)",
+        borderRadius: "5px",
+
+        "&:not(:first-child)": {
+            border: "1px solid rgba(0, 0, 0, 0.38)",
+            borderRadius: "2px",
+        },
+
         "&:hover": {
             backgroundColor: "#FFEECB",
             color: "black",
