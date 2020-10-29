@@ -105,6 +105,7 @@ export default function Breathe() {
                     onTimeUpdate={(e) => onTimeUpdate(e)}
                     onFinish={(e) => onFinish(e)}
                     duration={8000}
+                    progress={progress}
                 >
                     <CircleIndicator
                         fill="#AC9160"
