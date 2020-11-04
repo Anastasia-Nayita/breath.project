@@ -83,6 +83,7 @@ export default function Emotionally() {
     const [openPoor, setOpenPoor] = useState(false);
     const [openRough, setOpenRough] = useState(false);
     const [emoChoice, setEmoChoice] = useState([]);
+    const [moveBtn, setMoveBtn] = useState(true);
 
     const handleOpen = (e) => {
         if (e.currentTarget.id == "Great") {
@@ -109,18 +110,19 @@ export default function Emotionally() {
     const handleEmochoice = (e, newEmoChoice) => {
         if (newEmoChoice.length < 6) {
             setEmoChoice(newEmoChoice);
-            console.log("NEWemochoice: ", newEmoChoice);
-            console.log("emochoice: ", emoChoice);
+            //console.log("NEWemochoice: ", newEmoChoice);
+            //console.log("emochoice: ", emoChoice);
         }
         if (newEmoChoice.length === 5) {
-            console.log("Enougn is enough. Its 5");
+            // console.log("Enougn is enough. Its 5");
 
             try {
                 const { data } = axios.post("/emotional", { newEmoChoice });
-                console.log("data in try - axios emotional", data);
+                //console.log("data in try - axios emotional", data);
             } catch (err) {
                 console.log("err: ", err);
             }
+            setMoveBtn(false);
         }
     };
 
@@ -690,6 +692,9 @@ export default function Emotionally() {
                     </Modal>
                 </div>
             </Card>
+            <ToggleButton value disabled={moveBtn}>
+                Moove on
+            </ToggleButton>
         </>
     );
 }

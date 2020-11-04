@@ -215,7 +215,7 @@ app.post("/emotional", async function (req, res) {
         );
         res.json(rows[0]);
     } catch (err) {
-        console.log("err in /physical: ", err);
+        console.log("err in /emotional: ", err);
     }
 });
 
@@ -235,6 +235,16 @@ app.get("/chart/ment", async function (req, res) {
         res.json(rows);
     } catch (err) {
         console.log("err in /mentall: ", err);
+    }
+});
+
+app.get("/chart/emo", async function (req, res) {
+    try {
+        const { rows } = await db.getChartEmData(req.session.userId);
+        console.log("all rows in /chart/em", rows);
+        res.json(rows);
+    } catch (err) {
+        console.log("err in /emo: ", err);
     }
 });
 

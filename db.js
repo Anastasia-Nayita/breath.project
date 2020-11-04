@@ -102,3 +102,20 @@ module.exports.getChartMentData = (userId) => {
         [userId]
     );
 };
+
+module.exports.getChartEmData = (userId) => {
+    return db.query(
+        `SELECT unnest(emotionally), created_at,
+        TO_CHAR(
+        created_at,
+        'HH12:MIPM DD-MON'
+    ) created_at
+     FROM checkup
+        WHERE userId = ($1) 
+        AND emotionally <> '{}' 
+        GROUP BY emotionally
+        ORDER by count(*) desc limit 5
+        `,
+        [userId]
+    );
+};
