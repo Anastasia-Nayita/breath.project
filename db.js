@@ -75,14 +75,15 @@ module.exports.addEmoChoice = (userId, emotionally) => {
 
 module.exports.getChartPhysData = (userId) => {
     return db.query(
-        `SELECT userId, physically, created_at,
+        `SELECT userId, physically, 
         TO_CHAR(
         created_at,
         'HH12:MIPM DD-MON'
     ) created_at
         FROM checkup 
         WHERE userId = ($1) 
-    AND physically IS NOT NULL
+    AND physically IS NOT NULL 
+    LIMIT 10
         `,
         [userId]
     );
@@ -90,7 +91,7 @@ module.exports.getChartPhysData = (userId) => {
 
 module.exports.getChartMentData = (userId) => {
     return db.query(
-        `SELECT userId, mentally, created_at,
+        `SELECT userId, mentally, 
         TO_CHAR(
         created_at,
         'HH12:MIPM DD-MON'
@@ -98,23 +99,35 @@ module.exports.getChartMentData = (userId) => {
         FROM checkup 
         WHERE userId = ($1) 
         AND mentally IS NOT NULL
+        LIMIT 10
         `,
         [userId]
     );
 };
 
-module.exports.getChartEmData = (userId) => {
+module.exports.getTop5EmData = (userId) => {
     return db.query(
-        `SELECT unnest(emotionally), created_at,
-        TO_CHAR(
-        created_at,
-        'HH12:MIPM DD-MON'
-    ) created_at
+        `SELECT unnest(emotionally)
      FROM checkup
         WHERE userId = ($1) 
-        AND emotionally <> '{}' 
+        AND 
+        emotionally <> '{}' 
         GROUP BY emotionally
         ORDER by count(*) desc limit 5
+        `,
+        [userId]
+    );
+};
+
+module.exports.getChartEmoData = (userId) => {
+    return db.query(
+        `
+        select unnest(emotionally),                                                                                       
+        TO_CHAR(                                                                                                          
+        created_at,                                                                                                       
+        'HH12:MIPM DD-MON'                                                                                            
+        ) created_at                                                                                                   
+        from checkup limit 10;
         `,
         [userId]
     );

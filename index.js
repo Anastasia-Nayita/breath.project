@@ -238,13 +238,22 @@ app.get("/chart/ment", async function (req, res) {
     }
 });
 
-app.get("/chart/emo", async function (req, res) {
+app.get("/chart/top5emo", async function (req, res) {
     try {
-        const { rows } = await db.getChartEmData(req.session.userId);
-        console.log("all rows in /chart/em", rows);
+        const { rows } = await db.getTop5EmData(req.session.userId);
+        console.log("all rows in getTop5EmData", rows);
         res.json(rows);
     } catch (err) {
-        console.log("err in /emo: ", err);
+        console.log("err in /top5emo: ", err);
+    }
+});
+app.get("/chart/emo", async function (req, res) {
+    try {
+        const { rows } = await db.getChartEmoData(req.session.userId);
+        console.log("all rows in /chart/emo", rows);
+        res.json(rows);
+    } catch (err) {
+        console.log("err in chart/emo: ", err);
     }
 });
 

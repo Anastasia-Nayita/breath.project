@@ -23,6 +23,7 @@ export default function ChartTest() {
     const [dataChartM, setDataChartM] = useState({});
     const [dataChartE, setDataChartE] = useState({});
 
+    const [top5, setTop5] = useState([]);
     const [timePeriods, setTimePeriods] = useState([]);
     const [physConditions, setPhysConditions] = useState([]);
 
@@ -74,104 +75,104 @@ export default function ChartTest() {
         let timePerM = [];
         let emoCond = [];
         let timePerE = [];
-        axios.get("/chart/emo");
+        // axios.get("/chart/emo");
 
         Promise.all([
             axios.get("/chart/phys"),
             axios.get("/chart/ment"),
-            // axios.get("/chart/emo"),
+            axios.get("/chart/top5emo"),
+            axios.get("/chart/emo"),
         ])
-            .then(
-                ([
-                    resp,
-                    resm,
-                    //  resE
-                ]) => {
-                    for (const dataObj of resp.data) {
-                        physCond.push(
-                            {
-                                great: 500,
-                                good: 400,
-                                meh: 300,
-                                poor: 200,
-                                rough: 100,
-                            }[dataObj.physically]
-                        );
-                        timePerP.push(dataObj.created_at);
-                    }
+            .then(([resp, resm, restop5emo, resE]) => {
+                console.log("restop5emo.data: ", restop5emo.data);
 
-                    setDataChartP({
-                        labels: timePerP,
-                        datasets: [
-                            {
-                                label: "Physical state",
-                                data: physCond,
-                                backgroundColor: "#FF6384",
-                                borderColor: "orange",
-                                borderWidth: 1,
-                                hoverBackgroundColor: "green",
-                                hoverBorderColor: "orange",
-                            },
-                        ],
-                    });
-                    ///////////////////////////////// MENT
-                    for (const dataObj of resm.data) {
-                        mentCond.push(
-                            {
-                                great: 500,
-                                good: 400,
-                                meh: 300,
-                                poor: 200,
-                                rough: 100,
-                            }[dataObj.mentally]
-                        );
-                        timePerM.push(dataObj.created_at);
-                    }
+                setTop5(restop5emo.data);
 
-                    setDataChartM({
-                        labels: timePerM,
-                        datasets: [
-                            {
-                                label: "Mental state",
-                                data: mentCond,
-                                backgroundColor: "#FF6384",
-                                borderColor: "orange",
-                                borderWidth: 1,
-                                hoverBackgroundColor: "green",
-                                hoverBorderColor: "orange",
-                            },
-                        ],
-                    });
-
-                    // for (const dataObj of resE.data) {
-                    //     emoCond.push(
-                    //         {
-                    //             great: 500,
-                    //             good: 400,
-                    //             meh: 300,
-                    //             poor: 200,
-                    //             rough: 100,
-                    //         }[dataObj.emotionally]
-                    //     );
-                    //     timePerE.push(dataObj.created_at);
-                    // }
-
-                    // setDataChartE({
-                    //     labels: timePerE,
-                    //     datasets: [
-                    //         {
-                    //             label: "Emotional state",
-                    //             data: emoCond,
-                    //             backgroundColor: "#FF6384",
-                    //             borderColor: "orange",
-                    //             borderWidth: 1,
-                    //             hoverBackgroundColor: "green",
-                    //             hoverBorderColor: "orange",
-                    //         },
-                    //     ],
-                    // });
+                for (const dataObj of resp.data) {
+                    physCond.push(
+                        {
+                            great: 500,
+                            good: 400,
+                            meh: 300,
+                            poor: 200,
+                            rough: 100,
+                        }[dataObj.physically]
+                    );
+                    timePerP.push(dataObj.created_at);
                 }
-            )
+
+                setDataChartP({
+                    labels: timePerP,
+                    datasets: [
+                        {
+                            label: "Physical state",
+                            data: physCond,
+                            backgroundColor: "#FF6384",
+                            borderColor: "orange",
+                            borderWidth: 1,
+                            hoverBackgroundColor: "green",
+                            hoverBorderColor: "orange",
+                        },
+                    ],
+                });
+                ///////////////////////////////// MENT
+                ///  console.log("resm.data: ", resm.data);
+                for (const dataObj of resm.data) {
+                    mentCond.push(
+                        {
+                            great: 500,
+                            good: 400,
+                            meh: 300,
+                            poor: 200,
+                            rough: 100,
+                        }[dataObj.mentally]
+                    );
+                    timePerM.push(dataObj.created_at);
+                }
+
+                setDataChartM({
+                    labels: timePerM,
+                    datasets: [
+                        {
+                            label: "Mental state",
+                            data: mentCond,
+                            backgroundColor: "#FF6384",
+                            borderColor: "orange",
+                            borderWidth: 1,
+                            hoverBackgroundColor: "green",
+                            hoverBorderColor: "orange",
+                        },
+                    ],
+                });
+
+                // for (const dataObj of resE.data) {
+                //     emoCond.push(
+                //         {
+                //             great: 500,
+                //             good: 400,
+                //             meh: 300,
+                //             poor: 200,
+                //             rough: 100,
+                //         }[dataObj.emotionally]
+                //     );
+                //     timePerE.push(dataObj.created_at);
+                // }
+
+                // setDataChartE({
+                //     labels: timePerE,
+                //     datasets: [
+                //         {
+                //             label: "Emotional state",
+                //             data: emoCond,
+                //             backgroundColor: "#FF6384",
+                //             borderColor: "orange",
+                //             borderWidth: 1,
+                //             hoverBackgroundColor: "green",
+                //             hoverBorderColor: "orange",
+                //         },
+                //     ],
+                // });
+            })
             .catch((err) => {
                 console.log("err in chart", err);
             });
@@ -190,6 +191,18 @@ export default function ChartTest() {
             <Line data={dataChartM} options={options} />
 
             <h3 className={classes.titleSmaller}>Emotionally</h3>
+            <h4>the most common emotions:</h4>
+            <ul>
+                <li>
+                    {top5.map((emotion) => {
+                        return (
+                            <div key={emotion.id}>
+                                <h4>{emotion.unnest}</h4>
+                            </div>
+                        );
+                    })}
+                </li>
+            </ul>
             {/* <Bubble data={dataChartE} options={options} /> */}
         </div>
     );
