@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import { Bubble } from "react-chartjs-2";
 
-//import "./chart.css";
 import axios from "../axios.js";
 import promise from "redux-promise";
 import { makeStyles } from "@material-ui/core/styles";
@@ -75,7 +74,6 @@ export default function ChartTest() {
         let timePerM = [];
         let emoCond = [];
         let timePerE = [];
-        // axios.get("/chart/emo");
 
         Promise.all([
             axios.get("/chart/phys"),

@@ -110,15 +110,10 @@ export default function Emotionally() {
     const handleEmochoice = (e, newEmoChoice) => {
         if (newEmoChoice.length < 6) {
             setEmoChoice(newEmoChoice);
-            //console.log("NEWemochoice: ", newEmoChoice);
-            //console.log("emochoice: ", emoChoice);
         }
         if (newEmoChoice.length === 5) {
-            // console.log("Enougn is enough. Its 5");
-
             try {
                 const { data } = axios.post("/emotional", { newEmoChoice });
-                //console.log("data in try - axios emotional", data);
             } catch (err) {
                 console.log("err: ", err);
             }
